@@ -2,12 +2,12 @@ import { MutableRefObject, useEffect, useRef } from "react";
 
 const useClickOutside = (cb: (event: Event) => void) => {
 
-    const ref: MutableRefObject<any> = useRef(null)
+    const ref: MutableRefObject<HTMLElement | null> = useRef(null)
 
     useEffect(() => {
 
         const listener: EventListenerOrEventListenerObject = (event) => {
-            if (!ref || !ref.current || ref.current.contains(event.target)) {
+            if (!ref?.current || ref.current.contains(event?.target as Node)) {
                 return;
             }
 
